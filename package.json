@@ -1,11 +1,10 @@
 {
-  "name": "gatsby-starter-rocket-docs",
+  "name": "pico-8-docs",
   "private": true,
   "version": "1.0.0",
-  "description": "Out of the box Gatsby Starter for creating documentation websites easily and quickly. With support for MDX, code highlight, Analytics, SEO and more",
-  "author": "João Pedro Schmitz <oi@joaopedro.cc> (@joaopedro_cc)",
+  "description": "Unofficial Pico-8 Documentation",
+  "author": "Jan Osio <yahoor1@gmail.com>",
   "license": "MIT",
-  "starter-name": "gatsby-starter-rocket-docs",
   "dependencies": {
     "@rocketseat/gatsby-theme-docs": "^2.2.3",
     "gatsby": "^2.24.53",
@@ -21,9 +20,9 @@
   },
   "devDependencies": {},
   "keywords": [
-    "gatsby",
-    "rocketseat",
-    "gatsby-starter"
+    "Pico-8",
+    "Documentation",
+    "API"
   ],
   "scripts": {
     "build": "gatsby build",
