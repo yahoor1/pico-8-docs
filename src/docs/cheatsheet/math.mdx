@@ -1,0 +1,65 @@
+---
+title: Math
+description: Math
+---
+
+## Math functions
+```
+-32768.0 .. 32767.99 -- numeric representation range
+abs(x) -- x absolute value
+atan2(dx, dy) -- convert (dx, dy) to an angle in [0..1]
+band(x, y) -- bitwise conjunction
+bnot(x) -- bitwise negation
+bor(x, y) -- bitwise disjunction
+bxor(x, y) -- bitwise exclusive disjunction
+cos(x) -- x cosine, [0..1]
+flr(x) -- round down
+-flr(-x) -- not a function per se, but will work as ceil(x)
+max(x, y) -- x/y maximum
+mid(x, y, z) -- x/y/z middle value
+min(x, y) -- x/y minimum
+rnd(x) -- random; 0 <= n < x
+sgn(x) -- returns argument sign: -1 or 1; sgn(0) = 1
+shl(x, y) -- shift left
+shr(x, y) -- shift right
+sin(x) -- x sine, [0..1]; inverted
+sqrt(x) -- x square root
+srand(x) -- set random seed
+```
+
+## Flow control
+
+```
+::label:: -- label
+goto label -- jump
+
+if (<condition>) -- inline if
+
+if <condition> then
+ -- if block
+elseif <condition> then
+ -- elseif block
+else
+ -- else block
+end
+
+while <condition> do
+ -- while block
+end
+
+repeat
+ -- repeat block
+until <condition>
+
+for <var> = <first>, <last>, <step> do
+ -- for block
+end
+
+for <var> in all(<table>) do
+ -- for block
+end
+
+for <key>, <value> in pairs(<table>) do
+ -- for block
+end
+```

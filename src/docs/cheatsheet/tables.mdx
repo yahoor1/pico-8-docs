@@ -1,0 +1,91 @@
+---
+title: Tables
+description: Tables
+---
+
+### table manipulation
+```
+add(t, v) -- add v to t
+all(t) -- used in 'for v in all(t)' loops
+count(t) -- returns number of elements in the table
+del(t, v) -- delete first instance of v in t
+foreach(t, f) -- call f() for each v in t
+ipairs(t) -- loops through a numerically indexed table; for _, v in ipairs(t) do end
+pairs(t) -- loops through string indexed tables; for k,v in pairs(t) do end
+pack(...) -- adds any number of arguments into a table and returns the table
+unpack(t) -- returns all entries in a table as arguments
+rnd(t) -- returns a random value from a table
+```
+
+### metatables - view metatables thread
+```
+mt = {} -- init metatable
+setmetatable(t, mt) -- set metatable mt to table t
+```
+
+### metatables - special keys
+```
+-- object oriented programming; invoked as 't:foo()' / 't:bar()'
+fun = {}
+function fun.foo(t) dosomething() end
+function fun.bar(t) dosomethingmore() end
+mt.__index = fun
+
+-- property assignment; invoked when calling 't[k] = v'
+function mt.__newindex(t, k, v) rawset(t, k, v) end
+
+-- weak references; keys and / or values
+mt.__mode = "k" or "v" or "kv"
+
+-- treat a table like a function; invoked when calling 't()'
+function mt.__call(t) dosomething() end
+
+-- hide metatable; returned by 'getmetatable(t)'
+public_mt = {}
+mt.__metatable = public_mt
+
+-- string casting; returned by 'tostring(t)'
+function mt.__tostring(t) return tostring(t) end
+
+-- table length; returned by '#t'
+function mt.__len(t) return #t end
+```
+
+### metatables - mathematic operators
+```
+-- unary minus; returned by '-t'
+function mt.__unm(t) return -t end
+
+-- addition; returned by 'a + b'
+function mt.__add(a, b) return a + b end
+
+-- subtraction; returned by 'a - b'
+function mt.__sub(a, b) return a - b end
+
+-- multiplication; returned by 'a * b'
+function mt.__mul(a, b) return a * b end
+
+-- division; returned by 'a / b'
+function mt.__div(a, b) return a / b end
+
+-- modulo; returned by 'a % b'
+function mt.__mod(a, b) return a % b end
+
+-- involution; returned by 'a ^ b'
+function mt.__pow(a, b) return a ^ b end
+
+-- concatenation; returned by 'a .. b'
+function mt.__concat(a, b) return a .. b end
+```
+
+### metatables - comparison operators
+```
+-- check for equality; returned by 'a == b'
+function mt.__eq(a, b) return a == b end
+
+-- check for less-than; returned by 'a < b'
+function mt.__lt(a, b) return a < b end
+
+-- check for less-than-or-equal; returned by 'a <= b'
+function mt.__le(a, b) return a <= b end
+```

@@ -1,0 +1,90 @@
+---
+title: Pico-8
+description: Pico-8
+---
+
+### execution flow
+```
+_init() -- called once on program startup
+_update() -- called once per update at 30fps
+_update60() -- called once per update at 60fps
+_draw() -- called once per visible frame
+```
+
+### CLI
+```
+assert(condition) -- verify that condition is true
+cd .. -- change to parent directory
+cd [dirname] -- change directory
+dir() -- list items
+exit() -- close pico-8 app
+export(filename.html, [cart1.p8, cart2.p8 ... cart15]) -- export game in html; up to 15 extra carts (.p8 format)
+export(filename.png) -- export spritesheet
+export(filename.wav) -- export the current sfx / music
+export(filename%d.wav) -- export all sfx as numbered files
+extcmd(cmd) -- control screenshots; "label" = cart label; "screen" = screenshot; "rec" = start gif; "video" = save gif
+folder() -- open carts folder in operating system
+help() -- show summary of system commands
+import(filename.png) -- import spritesheet. expects 128x128 png and colour-fits to the pico-8 palette
+info() -- print cart info
+install_demos() -- install demo p8 carts alongside pico-8 app
+install_games() -- install selection of bbs carts
+keyconfig() -- keyboard configuration for player buttons
+load("@clip") -- paste cart from clipboard, bbs support
+load(filename) -- load cart; works with multi-cart export
+ls() -- list items
+menuitem(index, [label, callback]) -- add an extra item to the pause menu; index in [1..5]; no label or callback removes the item
+mkdir(dirname) -- create directory
+printh(str, [filename, overwrite]) -- print str to terminal; append or overwrite to filename
+reboot() -- reboot pico8
+resume() -- resume cart execution
+run() -- boot cart
+save("@clip") -- copy cart to clipboard, bbs support
+save(filename) -- save cart
+shutdown() -- close pico-8 app
+splore() -- explore cartridges
+stat(x) -- read some execution values, read below
+time() -- returns seconds since last reboot
+type(v) -- returns type of v: number, string or table
+```
+
+### stats
+```
+stat(0) -- memory usage in [0..1024]
+stat(1) -- cpu usage; 1.0 == 100% cpu at 30fps
+stat(4) -- clipboard; after user pressed ctrl-v
+stat([16..19]) -- index of playing sfx on channels [0..3]
+stat([20..23]) -- note number (0..31) on channels [0..3]
+stat(30) -- keyboard key hit; see "peek / poke" tab
+stat(31) -- keyboard character; see "peek / poke" tab
+stat(32) -- mouse x coord; see "peek / poke" tab
+stat(33) -- mouse y coord; see "peek / poke" tab
+stat(34) -- mouse button bitmask; see "peek / poke" tab
+```
+
+### javascript
+```
+pico8_gpio[] // read and write gpio pins
+pico8_buttons[] // bitfields for player input
+```
+
+### debugging
+```
+-- After running the game with ctrl + r, press escape to pause execution
+. -- Entering a '.' into the console will advance the game to the next frame
+enter -- Continue entering the '.' character or simply press enter
+print(player.x) -- Show the current, live x value of the player. Game does not cease execution, & updates each frame!
+?player.x -- '?' functions just like 'print' and can be used in place as shorthand
+resume() -- The 'resume' function will return the game to a normal running state.
+```
+
+### private functions
+```
+_get_frames_skipped() -- used automatically by _mainloop()
+_get_menu_item_selected(n) -- returns true or false if the n-th menu item is selected; n in [1..5]; used automatically by _mainloop()
+_mainloop() -- main pico-8's "while true"
+_pausemenu[n].callback() -- execute the n-th menu item's callback; n in [1..5]; used automatically by _mainloop()
+_set_mainloop_exists(n) -- ?
+_update_buttons() -- used automatically by _mainloop()
+holdframe() -- used automatically by _mainloop()
+```

@@ -1,0 +1,75 @@
+---
+title: Operators
+description: Operators
+---
+
+### Bitwise
+```
+x & y   -- both bits are set
+x | y   -- either bit is set
+x ^^ y  -- either bit is set, but not both of them
+~ x     -- each bit is not set
+x << n  -- shift left n bits (zeros come in from the right)
+x >> n  -- arithmetic right shift (the left-most bit state is duplicated)
+x >>> n -- logical right shift (zeros comes in from the left)
+x <<> n -- rotate all bits in x left by n places
+x >>< n -- rotate all bits in x right by n places
+```
+
+### Bitwise functions
+```
+band(x, y) -- both bits are set
+bor(x, y)  -- either bit is set
+bxor(x, y) -- either bit is set, but not both of them
+bnot(x)    -- each bit is not set
+shl(x, n)  -- shift left n bits (zeros come in from the right)
+shr(x, n)  -- arithmetic right shift (the left-most bit state is duplicated)
+lshr(x, n) -- logical right shift (zeros comes in from the left)
+rotl(x, n) -- rotate all bits in x left by n places
+rotr(x, n) -- rotate all bits in x right by n places
+```
+
+### Assignment
+```
+a = b -- set
+a + b -- sum
+a - b -- sub
+a * b -- mul
+a / b -- div
+a \ b -- int div; ie: flr(x)/n
+a % b -- mod
+a ^ b -- pow
+```
+
+### Augmented Assignment
+```
+a += b -- sum to
+a -= b -- sub to
+a *= b -- mul to
+a /= b -- div to
+a %= b -- mod to
+a ^= b -- pow to
+```
+
+### Relational
+```
+a == b -- equivalent
+a ~= b -- non-equivalent
+a != b -- non-equivalent
+a > b  -- greater
+a < b  -- less
+a >= b -- greater or equivalent
+a <= b -- less or equivalent
+```
+
+### Boolean
+```
+not a   -- negation
+a and b -- conjunction
+a or b  -- disjunction
+```
+
+### Delimiters
+```
+(a)
+```

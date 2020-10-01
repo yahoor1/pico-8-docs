@@ -1,0 +1,34 @@
+---
+title: Peek / Poke
+description: Peek / Poke
+---
+
+### devkit input mode
+```
+poke(0x5f2d, 1) -- enable devkit input mode
+stat(30) -- read keyboard had input (bool); repeats every 4 frames after key held for 15 frames
+stat(31) -- read keyboard character
+stat(32) -- read x coord
+stat(33) -- read y coord
+stat(34) -- read button bitmask; 1 = primary, 2 = secondary, 4 = middle
+```
+
+### extra graphics modes
+```
+poke(0x5f2c, 0) -- standard, 128x128
+poke(0x5f2c, 1) -- horizontal stretch, 64x128
+poke(0x5f2c, 2) -- vertical stretch, 128x64
+poke(0x5f2c, 3) -- zoomed, 64x64
+poke(0x5f2c, 4) -- standard, 128x128
+poke(0x5f2c, 5) -- mirror left half
+poke(0x5f2c, 6) -- mirror top half
+poke(0x5f2c, 7) -- mirror top-left quarter
+```
+
+### raspberry pi / pocketchip gpio
+```
+-- run pico-8 as root ("sudo pico-8")
+-- 128 pin values in the range [0..255]
+poke(0x5f80, value) -- send value to gpio0
+peek(0x5f81) -- get value from gpio1
+```

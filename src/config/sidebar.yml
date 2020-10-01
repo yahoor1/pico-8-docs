@@ -1,0 +1,44 @@
+# Sidebar navigation
+
+- label: 'Introduction'
+  link: '/'
+- label: API
+  items:
+    - label: 'Audio'
+      link: '/cheatsheet/audio'
+    - label: 'Cart data'
+      link: '/cheatsheet/cart-data'
+    - label: 'Coroutines'
+      link: '/cheatsheet/coroutines'
+    - label: 'Graphics'
+      link: '/cheatsheet/graphics'
+    - label: 'Input'
+      link: '/cheatsheet/input'
+    - label: 'Map'
+      link: '/cheatsheet/map'
+    - label: 'Math'
+      link: '/cheatsheet/math'
+    - label: 'Memory'
+      link: '/cheatsheet/memory'
+    - label: 'Operators'
+      link: '/cheatsheet/operators'
+    - label: 'Peek / Poke'
+      link: '/cheatsheet/peekpoke'
+    - label: 'Pico-8'
+      link: '/cheatsheet/pico-8'
+    - label: 'Strings'
+      link: '/cheatsheet/strings'
+    - label: 'Tables'
+      link: '/cheatsheet/tables'  
+    - label: 'Stat'
+      link: '/cheatsheet/stat' 
+- label: Configuration
+  items:
+    - label: 'Configuration'
+      link: '/configuration'
+    - label: 'Sharing'
+      link: '/sharing'
+- label: Community
+  items:
+    - label: 'Github'
+      link: https://github.com/

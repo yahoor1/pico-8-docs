@@ -1,0 +1,30 @@
+---
+title: Memory
+description: Memory
+---
+
+## Memory manipulation
+```
+cstore(dest_addr, src_addr, len, [filename]) -- copy bytes from ram to rom [load from filename; works with multi-cart export]
+memcpy(dest_addr, src_addr, len) -- copy bytes
+memset(dest_addr, val, len) -- set len bytes to val
+peek(addr) -- read byte in ram address
+poke(addr, val) -- write val in ram address
+reload(dest_addr, src_addr, len, [filename]) -- copy bytes from rom to ram [load from filename; works with multi-cart export]
+```
+
+## RAM Layout
+```
+0x0    - gfx
+0x1000 - gfx2/map2 (shared)
+0x2000 - map
+0x3000 - gfx_props
+0x3100 - song
+0x3200 - sfx
+0x4300 - user data
+0x5e00 - persistent cart data (256 bytes)
+0x5f00 - draw state
+0x5f40 - hardware state
+0x5f80 - gpio pins (128 bytes)
+0x6000 - screen (8k)
+```

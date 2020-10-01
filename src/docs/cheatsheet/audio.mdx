@@ -1,0 +1,31 @@
+---
+title: Audio
+description: Audio
+---
+
+![Music Keyboard](/images/cheatsheet/music-keyboard.png)
+
+## Audio manipulation
+| function |  description |
+|---|---|
+| `music([n, [fade_len, [channel_mask]]])` | Play music |
+| `sfx(n, [channel, [offset]])` | Play sfx |
+
+### music()
+Play music
+```lua
+music([n, [fade_len, [channel_mask]]])
+```
+| parameter |  description |
+|---|---|
+| `n = -1` | stop |
+
+### sfx()
+Play sfx
+```lua
+sfx(n, [channel, [offset]])
+```
+| parameter |  description |
+|---|---|
+| `n = -1` | stop in channel |
+| `n = -2` | release loop in channel |

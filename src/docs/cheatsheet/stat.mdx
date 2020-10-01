@@ -1,0 +1,51 @@
+---
+title: Stat
+description: Stat
+---
+
+The stat() function returns information about the current runtime environment.
+Each kind of information has an ID (a number), described below.
+
+```lua
+stat(4) -- clipboard; after user pressed ctrl-v
+stat([16..19]) -- index of playing sfx on channels [0..3]
+stat([20..23]) -- note number (0..31) on channels [0..3]
+stat(30) -- keyboard key hit; see "peek / poke" tab
+stat(31) -- keyboard character; see "peek / poke" tab
+stat(32) -- mouse x coord; see "peek / poke" tab
+stat(33) -- mouse y coord; see "peek / poke" tab
+stat(34) -- mouse button bitmask; see "peek / poke" tab
+```
+
+```lua
+stat(0) --[[ Memory Usage
+The number returned is a value in Kilobytes, with 1 representing 1024 bytes.
+Any decimal value returned is accurate, for example, 1.875 is equivalent to 1920 bytes.
+
+This value accounts for ANY & ALL data used in the Lua code, including variables and tables, etc.
+Thus, the maxiumum amount this can return is 2048, ie, 2 Megabytes, the total amount of memory alloted to Lua.
+
+This value does NOT include any peekable/pokeable RAM, ie, graphical/video, nor does it include the cart ROM.
+]]--
+
+stat(1) --[[ Total CPU Usage
+Initializes at 0 from the first _update call after the most recent _draw call.
+The value will increment steadily towards 1 as the next frame approaches.
+
+Ultimately, if the _update function is used, a value of 1 would represent 1/30th of a second having elapsed.
+If instead the _update60 function is used, a value of 1 would represent 1/60th of a second instead.
+
+Any time this returns a value exceeding 1 is an indication that the current cart is beyond the processing power it
+is allotted for that frame. This means that frames will likely be dropped to compensate for the slow down.
+]]--
+
+stat(2) --[[ System CPU Usage
+This value represents the the range/behavior seen in stat(1)
+
+The difference between the two is that this value will only increase when PICO-8 is processing unseen code.
+
+For example, if the screen was cleared 70 times in a step, stat(2) would return a value > 1. 
+That's because the cls() function is a system call, but if the frame was spent calculating PI,
+stat(2) wouldn't rise, as such calculations are not system calls.
+]]--
+```

@@ -1,0 +1,131 @@
+---
+title: Sharing
+description: Sharing
+---
+
+## Sharing Cartridges
+
+There are three ways to share carts made in PICO-8:
+	
+- Share the .p8 or .p8.png file directly with other PICO-8 users
+		
+Type `FOLDER` to open the current folder in your host operating system.
+	
+- Post the cart on the Lexaloffe BBS to get a web-playable version
+
+http://www.lexaloffle.com/pico-8.php?page=submit
+			
+- Export the cartridge to a stand-alone html/js or native binary player
+(see the exporters section for details)
+
+## Exporters / Importers
+
+The EXPORT command can be used to generate png, wav files and stand-alone html and native
+binary cartridge players. The output format is inferred from the filename extention (e.g. .png).
+	
+You are free to distribute and use exported cartridges and data as you please, provided 
+that you have permission from the author and contributors.
+
+### Sprite Sheet (.png)
+
+``` 
+IMPORT BLAH.PNG     --  expects 128x128 png and colour-fits to the pico-8 palette
+EXPORT BLAH.PNG     --  use folder() to locate the exported png
+```
+	
+### SFX and Music (.wav)
+
+```	
+EXPORT BLAH.WAV     --  export music from the current pattern (when editor mode is MUSIC)
+EXPORT BLAH.WAV     --  export the current SFX (when editor mode is SFX)
+EXPORT BLAH%D.WAV   --  exports all of the SFXs as blah0.wav, blah1.wav .. blah63.wav
+```
+
+### HTML Player (.html)
+	
+To generate a stand-alone html player (foo.html, foo.js):
+`EXPORT FOO.HTML`
+		
+Or just the .js file:
+`EXPORT FOO.JS`
+
+- Use -f to write the files to a folder called foo_html, using index.html instead of foo.html
+`EXPORT -F FOO.HTML`
+		
+- Optionally provide a custom html template with the -p switch:
+`EXPORT FOO.HTML -P ONE_BUTTON`
+
+This will use the file `{application data}/pico-8/plates/one_button.html` as the html shell, 
+replacing a special string `##js_file##`, with the .js filename, and
+optionally replacing the string `##label_file##` with the cart's label image as a data url.
+
+- Use -w to export as .wasm + .js:  // ** still experimental! **
+`EXPORT -W FOO.HTML`
+
+### Binary Player (.bin)
+	
+To generate stand-alone executables for Windows, Linux (64-bit), Mac and Raspberry Pi:
+		
+`EXPORT FOO.BIN`
+		
+By default, the cartridge label is used as an icon with no transparency. 
+To specificy an icon from the sprite sheet, use -i and optionally -s and/or -c 
+to control the size and transparency.
+
+```		
+-I N  Icon index N with a default transparent colour of 0 (black).
+-S N  Size NxN sprites. Size 3 would be produce a 24x24 icon.
+-C N  Treat colour N as transparent. Use 16 for no transparency.
+```
+			
+For example, to use a 2x2 sprite starting at index 32 in the spritesheet, 
+using colour 12 as transparent:
+		
+`EXPORT -I 32 -S 2 -C 12 FOO.BIN`
+
+To include an extra file in the output folders and archives, use the -E switch:
+
+`EXPORT -E README.TXT FOO.BIN `
+
+
+Technical note: Windows file systems do not support the file metadata needed to create a
+Linux or Mac executable. PICO-8 works around this by exporting zip files in a way
+that preserves the file attributes. It is therefore recommended that you distribute
+the outputted zip files as-is to ensure users on other operating systems can run them.
+
+Otherwise, a Linux user who then downloads the binaries may need to `chmod +x foo`
+the file to run it, and Mac user would need to `chmod +x foo.app/Contents/MacOS/foo`
+
+
+
+Binaries will still export from PICO-8 running under Windows,
+but a Linux user would then need to manually `chmod +x foo` the file to run it, or a
+Mac user would need to open Terminal and: `chmod +x foo.app/Contents/MacOS/foo`
+
+For now, the only work-around is simply to export from a Mac or Linux machine, but a 
+better solution is in development.
+
+### Uploading to itch.io
+	
+If you would like to upload your exported cartridge to itch.io as playable html:
+
+1. From inside PICO-8: EXPORT -F FOO.HTML
+2. Create a new project from your itch dashboard.
+3. Zip up the folder and upload it (set "This file will be played in the browser")
+4. Embed in page, with a size of 750px x 680px.
+5. Set "Mobile Friendly" on (default orientation) and "Automatically start on page load" on.
+// no need for the fullscreen button as the default PICO-8 template has its own.
+6. Set the background (BG2) to something dark (e.g. #232323) and the text to something light 
+
+### Exporting Multiple Cartridges
+
+Up to 16 cartridges can be bundled together by passing them to EXPORT, when generating 
+stand-alone html or native binary players.
+		
+`EXPORT FOO.HTML DAT1.P8 DAT2.P8 GAME2.P8`
+		
+During runtime, the extra carts can be accessed as if they were local files:
+```		
+RELOAD(0,0,0x2000, "DAT1.P8") -- load spritesheet from DAT1.P8
+LOAD("GAME2.P8") -- load and run another cart
+```

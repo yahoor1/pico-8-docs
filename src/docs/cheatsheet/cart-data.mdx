@@ -1,0 +1,75 @@
+---
+title: Cart data
+description: Cart data
+---
+
+### cart data manipulation
+| function |  description |
+|---|---|
+| `cartdata(id)` | Open cart data named id |
+| `dget(idx)` | Gets a value from persistent cartridge data. |
+| `dset(idx, val)` | Sets a value in persistent cartridge data. |
+
+### cartdata()
+Sets up cartridge data for the cart.
+```lua
+cartdata(id)
+```
+| parameter |  description |
+|---|---|
+| `id` | A string that is likely to be unique across all PICO-8 carts. |
+
+A cartridge can store 64 numbers (256 bytes) of data to persistent storage. This data is available the next time the user runs the cart, and persists in the player even if the cartridge is replaced with a new version of the same cartridge.
+
+The cartdata() function sets up PICO-8's persistent cartridge data feature. It must be called once (and only once) by the cart before using dset() or dget().
+
+The function takes a string ID that uniquely identifies the cartridge among all PICO-8 cartridges that might have persistent data. There is no central registry for cartdata IDs, and you're expected to not willfully overwrite data belonging to other carts. Likewise, you can purposefully use the same ID across multiple carts to share persistent data between carts, such as to implement a very large adventure game that requires multiple carts.
+
+One reasonable way to derive a unique ID for your cart is to use the following pattern:
+
+`username_title_version`
+
+... where username is your PICO-8 BBS username, title is the title of the cartridge, and version is an optional version ID. You would only increment the version ID if a new version of the cart stores cart data in a format incompatible with previous versions.
+
+Once cartdata() has been called, the data bytes can be accessed directly at memory locations 0x5e00 to 0x5eff. Using poke() to update these values persists the new value automatically, similar to dset().
+
+### examples
+```lua
+function _init()
+  cartdata("zep_jelpi_1")
+  player_pos = dget(0)
+  player_inventory = dget(1)
+end
+ 
+function save_game()
+  dset(0, player_pos)
+  dset(1, player_inventory)
+end
+```
+
+### dget()
+Gets a value from persistent cartridge data.
+```lua
+dget(idx)
+```
+| parameter |  description |
+|---|---|
+| `idx` | The index of the value, 0 to 63. |
+
+A cartridge can store 64 numbers (256 bytes) of data to persistent storage. This data is available the next time the user runs the cart, and persists in the player even if the cartridge is replaced with a new version of the same cartridge.
+
+The dget() function retrieves the value for the given index (0 to 63).
+
+### dset()
+Sets a value in persistent cartridge data.
+```lua
+dset(idx, val)
+```
+| parameter |  description |
+|---|---|
+| `idx` | The index of the value. |
+| `val` | The new value to set. |
+
+A cartridge can store 64 numbers (256 bytes) of data to persistent storage. This data is available the next time the user runs the cart, and persists in the player even if the cartridge is replaced with a new version of the same cartridge.
+
+The dget() function retrieves the value for the given index (0 to 63).
