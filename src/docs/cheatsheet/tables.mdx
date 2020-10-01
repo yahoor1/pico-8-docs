@@ -4,7 +4,7 @@ description: Tables
 ---
 
 ### table manipulation
-```
+```lua
 add(t, v) -- add v to t
 all(t) -- used in 'for v in all(t)' loops
 count(t) -- returns number of elements in the table
@@ -18,13 +18,13 @@ rnd(t) -- returns a random value from a table
 ```
 
 ### metatables - view metatables thread
-```
+```lua
 mt = {} -- init metatable
 setmetatable(t, mt) -- set metatable mt to table t
 ```
 
 ### metatables - special keys
-```
+```lua
 -- object oriented programming; invoked as 't:foo()' / 't:bar()'
 fun = {}
 function fun.foo(t) dosomething() end
@@ -52,7 +52,7 @@ function mt.__len(t) return #t end
 ```
 
 ### metatables - mathematic operators
-```
+```lua
 -- unary minus; returned by '-t'
 function mt.__unm(t) return -t end
 
@@ -79,7 +79,7 @@ function mt.__concat(a, b) return a .. b end
 ```
 
 ### metatables - comparison operators
-```
+```lua
 -- check for equality; returned by 'a == b'
 function mt.__eq(a, b) return a == b end
 

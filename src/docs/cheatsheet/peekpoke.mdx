@@ -4,7 +4,7 @@ description: Peek / Poke
 ---
 
 ### devkit input mode
-```
+```lua
 poke(0x5f2d, 1) -- enable devkit input mode
 stat(30) -- read keyboard had input (bool); repeats every 4 frames after key held for 15 frames
 stat(31) -- read keyboard character
@@ -14,7 +14,7 @@ stat(34) -- read button bitmask; 1 = primary, 2 = secondary, 4 = middle
 ```
 
 ### extra graphics modes
-```
+```lua
 poke(0x5f2c, 0) -- standard, 128x128
 poke(0x5f2c, 1) -- horizontal stretch, 64x128
 poke(0x5f2c, 2) -- vertical stretch, 128x64
@@ -26,7 +26,7 @@ poke(0x5f2c, 7) -- mirror top-left quarter
 ```
 
 ### raspberry pi / pocketchip gpio
-```
+```lua
 -- run pico-8 as root ("sudo pico-8")
 -- 128 pin values in the range [0..255]
 poke(0x5f80, value) -- send value to gpio0

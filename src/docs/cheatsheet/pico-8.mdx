@@ -4,7 +4,7 @@ description: Pico-8
 ---
 
 ### execution flow
-```
+```lua
 _init() -- called once on program startup
 _update() -- called once per update at 30fps
 _update60() -- called once per update at 60fps
@@ -49,7 +49,7 @@ type(v) -- returns type of v: number, string or table
 ```
 
 ### stats
-```
+```lua
 stat(0) -- memory usage in [0..1024]
 stat(1) -- cpu usage; 1.0 == 100% cpu at 30fps
 stat(4) -- clipboard; after user pressed ctrl-v
@@ -79,7 +79,7 @@ resume() -- The 'resume' function will return the game to a normal running state
 ```
 
 ### private functions
-```
+```lua
 _get_frames_skipped() -- used automatically by _mainloop()
 _get_menu_item_selected(n) -- returns true or false if the n-th menu item is selected; n in [1..5]; used automatically by _mainloop()
 _mainloop() -- main pico-8's "while true"
