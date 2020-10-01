@@ -1,3 +1,6 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 module.exports = {
   siteMetadata: {
     siteTitle: `Pico-8 API Documentation`,
@@ -36,7 +39,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        // trackingId: ``,
+        trackingId: process.env.GA_TRACKING_ID,
       },
     },
     `gatsby-plugin-remove-trailing-slashes`,
